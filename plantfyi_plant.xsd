@@ -1,0 +1,1371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 rel. 2 sp1 (x64) (http://www.altova.com) by Andrew R. Soncha Jr. (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:altova="http://www.altova.com/xml-schema-extensions" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:element name="plant">
+		<xs:annotation>
+			<xs:documentation>Botanical Information Format root</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="general"/>
+				<xs:element ref="form"/>
+				<xs:element ref="taxonomy"/>
+				<xs:element ref="culture"/>
+				<xs:element ref="valuation"/>
+				<xs:element ref="specific"/>
+			</xs:sequence>
+			<xs:attribute name="category"/>
+			<xs:attribute name="id"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="certification">
+		<xs:annotation>
+			<xs:documentation>Record Certification /  Source</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="form">
+		<xs:annotation>
+			<xs:documentation>Description of plant form and physical attributes</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="habit">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="description"/>
+							<xs:element name="minheight"/>
+							<xs:element name="maxheight"/>
+							<xs:element name="minspread"/>
+							<xs:element name="maxspread"/>
+							<xs:element name="nativeStatus"/>
+							<xs:element name="annualgrowth" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<altova:exampleValues>
+											<altova:example value="Forb / Herb"/>
+											<altova:example value="Graminoid"/>
+											<altova:example value="Lichenous"/>
+											<altova:example value="Liana"/>
+											<altova:example value="Nonvascular"/>
+											<altova:example value="Shrub"/>
+											<altova:example value="Sub-shrub"/>
+											<altova:example value="Tree"/>
+											<altova:example value="Vine"/>
+										</altova:exampleValues>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="minaltitude"/>
+							<xs:element name="maxaltitude"/>
+							<xs:element name="limitations">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="limit" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="images">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="locations">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="location" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Beach Front"/>
+													<xs:enumeration value="Street Tree"/>
+													<xs:enumeration value="Patio Ornamental"/>
+													<xs:enumeration value="Xeriscapic"/>
+													<xs:enumeration value="Houseplant"/>
+													<xs:enumeration value="Terrarium"/>
+													<xs:enumeration value="Bog Gardening"/>
+													<xs:enumeration value="Alpine Gardening"/>
+													<xs:enumeration value="EspalierTopiary"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="other"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="flower">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="toxicity" type="toxic"/>
+							<xs:element name="minsize">
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="maxsize"/>
+							<xs:element name="shape">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="high-centered"/>
+										<xs:enumeration value="cupped"/>
+										<xs:enumeration value="flat"/>
+										<xs:enumeration value="globular"/>
+										<xs:enumeration value="other"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="shapeother"/>
+							<xs:element name="petalcount">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Single: 1-7"/>
+										<xs:enumeration value="Semi-Double: 8-15"/>
+										<xs:enumeration value="Double: 16-25"/>
+										<xs:enumeration value="Full: 26-40"/>
+										<xs:enumeration value="Very Full: 40+"/>
+										<xs:enumeration value="Other"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="petalcountother"/>
+							<xs:element name="images">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="fragrance">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="None"/>
+										<xs:enumeration value="Mild"/>
+										<xs:enumeration value="Moderate"/>
+										<xs:enumeration value="Strong"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="fragranceNotes"/>
+							<xs:element name="characteristics">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="option" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Showy"/>
+													<xs:enumeration value="Inconspicuous"/>
+													<xs:enumeration value="Malodorous"/>
+													<xs:enumeration value="Nocturnal"/>
+													<xs:enumeration value="Blooms on New Wood"/>
+													<xs:enumeration value="Blooms on Old Wood"/>
+													<xs:enumeration value=""/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="other" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="rebloom">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="None"/>
+										<xs:enumeration value="Some"/>
+										<xs:enumeration value="Good"/>
+										<xs:enumeration value="Excellent"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="notes"/>
+							<xs:element ref="timing"/>
+							<xs:element name="colors">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="color" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Brown"/>
+													<xs:enumeration value="Green"/>
+													<xs:enumeration value="Blue"/>
+													<xs:enumeration value="Lavender"/>
+													<xs:enumeration value="Mauve"/>
+													<xs:enumeration value="Orange"/>
+													<xs:enumeration value="Pink"/>
+													<xs:enumeration value="Purple"/>
+													<xs:enumeration value="Red"/>
+													<xs:enumeration value="Russet"/>
+													<xs:enumeration value="White"/>
+													<xs:enumeration value="Yellow"/>
+													<xs:enumeration value="Bi-Color"/>
+													<xs:enumeration value="Multi-Color"/>
+													<xs:enumeration value="Other"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="colorother"/>
+							<xs:element name="colorrgb"/>
+							<xs:element name="edible" type="xs:boolean"/>
+							<xs:element name="inflorescence">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Single"/>
+										<xs:enumeration value="Verticillaster"/>
+										<xs:enumeration value="Catkin"/>
+										<xs:enumeration value="Cyantium"/>
+										<xs:enumeration value="Compound"/>
+										<xs:enumeration value="Raceme"/>
+										<xs:enumeration value="Spike"/>
+										<xs:enumeration value="Thyrse"/>
+										<xs:enumeration value="Panicle"/>
+										<xs:enumeration value="Umbel"/>
+										<xs:enumeration value="Compound Umbel"/>
+										<xs:enumeration value="Corymb"/>
+										<xs:enumeration value="Cyme"/>
+										<xs:enumeration value="Spadix"/>
+										<xs:enumeration value="Plume"/>
+										<xs:enumeration value="Cluster"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="leaf">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="toxicity" type="toxic"/>
+							<xs:element name="images">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="characteristics">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="option" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Fall Color"/>
+													<xs:enumeration value="Glaucous"/>
+													<xs:enumeration value="Unusual Coloration"/>
+													<xs:enumeration value="Evergreen"/>
+													<xs:enumeration value="Semi-evergreen"/>
+													<xs:enumeration value="Deciduous"/>
+													<xs:enumeration value="Fragrant"/>
+													<xs:enumeration value="Malodorous"/>
+													<xs:enumeration value="Variegated"/>
+													<xs:enumeration value="Spring ephmeral"/>
+													<xs:enumeration value="Needled"/>
+													<xs:enumeration value="Broadleaf"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="other" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="edible" type="xs:boolean"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="stem">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="toxicity" type="toxic"/>
+							<xs:element name="images">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ediblestem" type="xs:boolean"/>
+							<xs:element name="ediblebark" type="xs:boolean"/>
+							<xs:element name="ediblesap" type="xs:boolean"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="root">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="toxicity" type="toxic"/>
+							<xs:element name="images">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="characteristics">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="option" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Rhizome"/>
+													<xs:enumeration value="Taproot"/>
+													<xs:enumeration value="Corm"/>
+													<xs:enumeration value="Bulb"/>
+													<xs:enumeration value="Tuber"/>
+													<xs:enumeration value="Caudex"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="other" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="edible" type="xs:boolean"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="seed">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="toxicity" type="toxic"/>
+							<xs:element name="images">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="edible" type="xs:boolean"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="fruit">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="toxicity" type="toxic"/>
+							<xs:element name="images">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="timing"/>
+							<xs:element name="edible" type="xs:boolean"/>
+							<xs:element name="characteristics">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="option" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Showy"/>
+													<xs:enumeration value="Edible to Birds"/>
+													<xs:enumeration value="Dehiscent"/>
+													<xs:enumeration value="Pops open explosively when ripe"/>
+													<xs:enumeration value="Other"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="other" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="general">
+		<xs:annotation>
+			<xs:documentation>General Information of record</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="categoryid"/>
+				<xs:element name="description"/>
+				<xs:element name="dificulty">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="min"/>
+							<xs:element name="max"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="notes"/>
+				<xs:element name="tags">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="tag" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="USDASymbol"/>
+				<xs:element name="images">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="image" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="references">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="reference"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reference">
+		<xs:annotation>
+			<xs:documentation>Outside Reference</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name"/>
+				<xs:element name="description"/>
+				<xs:element name="link"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="image">
+		<xs:annotation>
+			<xs:documentation>Image</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" minOccurs="0"/>
+				<xs:element name="link" minOccurs="0"/>
+				<xs:element name="body" type="xs:base64Binary" minOccurs="0"/>
+				<xs:element name="source"/>
+				<xs:element name="caption"/>
+				<xs:element name="photocredit"/>
+				<xs:element name="datestamp"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="taxonomy">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="common">
+					<xs:annotation>
+						<xs:documentation>Common Name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="subkingdom"/>
+				<xs:element name="superdivision"/>
+				<xs:element name="division"/>
+				<xs:element name="class"/>
+				<xs:element name="subclass"/>
+				<xs:element name="order"/>
+				<xs:element name="family"/>
+				<xs:element name="genus"/>
+				<xs:element name="species"/>
+				<xs:element name="variety"/>
+				<xs:element name="cultivar"/>
+				<xs:element name="alternatenames">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="culture">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="growth">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="maxheight"/>
+							<xs:element name="maxwidth"/>
+							<xs:element name="annualrate"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="cycles">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="duration">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Annual"/>
+										<xs:enumeration value="Biennial"/>
+										<xs:enumeration value="Perennial"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="growth"/>
+							<xs:element name="dormancy"/>
+							<xs:element name="bloom"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="substrate">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="minpH">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:double"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="optimalpH">
+								<xs:complexType>
+									<xs:attribute name="value" type="xs:double"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="maxpH">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:double"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="container">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="containeroption" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="type">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="Suitable in 1 Gallon"/>
+																<xs:enumeration value="Suitable in 3 Gal or larger"/>
+																<xs:enumeration value="Suitable in Hanging Baskets"/>
+																<xs:enumeration value="Needs Repotting every 2-3 years"/>
+																<xs:enumeration value="Needs excellent drainage in pots"/>
+																<xs:enumeration value="Prefers to be root bound"/>
+																<xs:enumeration value="Not suitable for containers"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="note"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="water">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="reqtype">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="hydrophyte"/>
+										<xs:enumeration value="mesophyte"/>
+										<xs:enumeration value="xerophyte"/>
+										<xs:enumeration value="halophyte"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="common">
+								<xs:annotation>
+									<xs:documentation>Common Watering Description</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="In Water"/>
+										<xs:enumeration value="Wet"/>
+										<xs:enumeration value="Wet Mesic"/>
+										<xs:enumeration value="Mesic"/>
+										<xs:enumeration value="Dry Mesic"/>
+										<xs:enumeration value="Dry"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="minmoisture">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:int"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="optimalmoisture">
+								<xs:complexType>
+									<xs:attribute name="value" type="xs:int"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="maxmoisture">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:int"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="atmosphere">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="minhumidity">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:int"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="optimalhumidity">
+								<xs:complexType>
+									<xs:attribute name="value" type="xs:int"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="maxhumidity">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:int"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="airflow"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="nutrient">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nitrogen">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="min">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="Fault">
+														<xs:attribute name="value"/>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="optimal">
+											<xs:complexType>
+												<xs:attribute name="value"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="max">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="Fault">
+														<xs:attribute name="value"/>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="depletion"/>
+										<xs:element name="supplement"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="potassium">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="min">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="Fault">
+														<xs:attribute name="value"/>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="optimal">
+											<xs:complexType>
+												<xs:attribute name="value"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="max">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="Fault">
+														<xs:attribute name="value"/>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="depletion"/>
+										<xs:element name="supplement"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="phosphorous">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="min">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="Fault">
+														<xs:attribute name="value"/>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="optimal">
+											<xs:complexType>
+												<xs:attribute name="value"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="max">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="Fault">
+														<xs:attribute name="value"/>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="depletion"/>
+										<xs:element name="supplement"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="accumulators">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="nutrient" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Nitrogen Fixer"/>
+													<xs:enumeration value="P (Phosophorous)"/>
+													<xs:enumeration value="K (Potassium)"/>
+													<xs:enumeration value="Ca (Calcium)"/>
+													<xs:enumeration value="Mg (Magnesium)"/>
+													<xs:enumeration value="S (Sulfur)"/>
+													<xs:enumeration value="Fe (Iron)"/>
+													<xs:enumeration value="B (Boron)"/>
+													<xs:enumeration value="Mn (Manganese)"/>
+													<xs:enumeration value="Zn (Zinc)"/>
+													<xs:enumeration value="Cu (Copper)"/>
+													<xs:enumeration value="Mo (Molybdenum)"/>
+													<xs:enumeration value="Si (Silicon)"/>
+													<xs:enumeration value="Co (Cobalt)"/>
+													<xs:enumeration value="Na (Sodium)"/>
+													<xs:enumeration value="I (Iodine)"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="light">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="common">
+								<xs:annotation>
+									<xs:documentation>Common light-level description</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Full Sun"/>
+										<xs:enumeration value="Full Sun to Partial Shade"/>
+										<xs:enumeration value="Partial or Dappled Shade"/>
+										<xs:enumeration value="Partial Shade to Full Shade"/>
+										<xs:enumeration value="Full Shade"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="exposure">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Not Specified"/>
+										<xs:enumeration value="Any"/>
+										<xs:enumeration value="Internal / Shaded"/>
+										<xs:enumeration value="East / West"/>
+										<xs:enumeration value="North"/>
+										<xs:enumeration value="South"/>
+										<xs:enumeration value="Artificial"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="minlumen">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:int"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="optimallumen"/>
+							<xs:element name="maxlumen">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:int"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="temperature">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="climate">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="tropical"/>
+										<xs:enumeration value="subtropical"/>
+										<xs:enumeration value="temperate"/>
+										<xs:enumeration value="boreal"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="minzone" type="hardinessZone"/>
+							<xs:element name="maxzone" type="hardinessZone"/>
+							<xs:element name="mincelsius">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:int"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="optimalcelsius"/>
+							<xs:element name="maxcelsius">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="Fault">
+											<xs:attribute name="value" type="xs:int"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="threats">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="threat" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="indications" type="Fault"/>
+										<xs:element name="treatment"/>
+									</xs:sequence>
+									<xs:attribute name="type" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="pest"/>
+												<xs:enumeration value="disease"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="propagation"/>
+				<xs:element name="pollinators">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="pollinator" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="type">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Self"/>
+													<xs:enumeration value="Other"/>
+													<xs:enumeration value="Hoverflies"/>
+													<xs:enumeration value="Wasps"/>
+													<xs:enumeration value="Water"/>
+													<xs:enumeration value="Beetles"/>
+													<xs:enumeration value="Moths and Butterflies"/>
+													<xs:enumeration value="Midges"/>
+													<xs:enumeration value="Flies"/>
+													<xs:enumeration value="Bats"/>
+													<xs:enumeration value="Birds"/>
+													<xs:enumeration value="Bumblebees"/>
+													<xs:enumeration value="Bees"/>
+													<xs:enumeration value="Wind"/>
+													<xs:enumeration value="Cleistogamous"/>
+													<xs:enumeration value="Other"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="images">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="note"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="misc">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="options" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="type">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Tolerates poor soil"/>
+													<xs:enumeration value="Thorned"/>
+													<xs:enumeration value="Monoecious"/>
+													<xs:enumeration value="Dioecious"/>
+													<xs:enumeration value="Genetically Modified"/>
+													<xs:enumeration value="Epiphytic"/>
+													<xs:enumeration value="Monocarpic"/>
+													<xs:enumeration value="Carnivorous"/>
+													<xs:enumeration value="Goes Dormant"/>
+													<xs:enumeration value="Endangered"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="images">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="note" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="hardinessZone">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1a"/>
+			<xs:enumeration value="1b"/>
+			<xs:enumeration value="2a"/>
+			<xs:enumeration value="2b"/>
+			<xs:enumeration value="3a"/>
+			<xs:enumeration value="3b"/>
+			<xs:enumeration value="4a"/>
+			<xs:enumeration value="4b"/>
+			<xs:enumeration value="5a"/>
+			<xs:enumeration value="5b"/>
+			<xs:enumeration value="6a"/>
+			<xs:enumeration value="6b"/>
+			<xs:enumeration value="7a"/>
+			<xs:enumeration value="7b"/>
+			<xs:enumeration value="8a"/>
+			<xs:enumeration value="8b"/>
+			<xs:enumeration value="9a"/>
+			<xs:enumeration value="9b"/>
+			<xs:enumeration value="10a"/>
+			<xs:enumeration value="10b"/>
+			<xs:enumeration value="11a"/>
+			<xs:enumeration value="11b"/>
+			<xs:enumeration value="12a"/>
+			<xs:enumeration value="12b"/>
+			<xs:enumeration value="13a"/>
+			<xs:enumeration value="13b"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Fault">
+		<xs:sequence>
+			<xs:element name="symptom" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="description"/>
+						<xs:element name="images">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="propagation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="seeds">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="cuttingoption" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="type">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Provide Light"/>
+													<xs:enumeration value="Self Fertile"/>
+													<xs:enumeration value="Provide Darkness"/>
+													<xs:enumeration value="Stratify Seeds"/>
+													<xs:enumeration value="Scarify Seeds"/>
+													<xs:enumeration value="Needs Specific Temperature"/>
+													<xs:enumeration value="Days to Germinate"/>
+													<xs:enumeration value="Depth To Plant"/>
+													<xs:enumeration value="Suitable for Wintersowing"/>
+													<xs:enumeration value="Sow in Situ"/>
+													<xs:enumeration value="Start Indoors"/>
+													<xs:enumeration value="Can Handle Transplanting"/>
+													<xs:enumeration value="Seeds are Hydrophilic"/>
+													<xs:enumeration value="Will not come true from seed"/>
+													<xs:enumeration value="Other Info"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="images">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="note" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="cutting">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="cuttingoption" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="type">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Stem"/>
+													<xs:enumeration value="Tip"/>
+													<xs:enumeration value="Cane"/>
+													<xs:enumeration value="Leaf"/>
+													<xs:enumeration value="Root"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="images">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="note" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Other">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="otheroption" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="type">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Division"/>
+													<xs:enumeration value="Layering"/>
+													<xs:enumeration value="Stolons and Runners"/>
+													<xs:enumeration value="Offsets"/>
+													<xs:enumeration value="Bulbs"/>
+													<xs:enumeration value="Corms"/>
+													<xs:enumeration value="Crowns"/>
+													<xs:enumeration value="Other"/>
+													<xs:enumeration value="Meristem"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="images">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="note" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="valuation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="patent">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="holder"/>
+							<xs:element name="number"/>
+							<xs:element name="filedate"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="rarity"/>
+				<xs:element name="status">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="EX - Extinct"/>
+							<xs:enumeration value="EW - Extinct in the wild"/>
+							<xs:enumeration value="CR - Critically Endangered"/>
+							<xs:enumeration value="EN - Endangered"/>
+							<xs:enumeration value="VU - Vulnerable"/>
+							<xs:enumeration value="NT - Near Threatened"/>
+							<xs:enumeration value="LC - Least Concern"/>
+							<xs:enumeration value="DD - Data Deficient"/>
+							<xs:enumeration value="NE - Not Evaluated"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="uses">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="use" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="awards">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="award" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name"/>
+										<xs:element name="date"/>
+										<xs:element name="description"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="preparations">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="method" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="type">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="tea"/>
+													<xs:enumeration value="cooking spice / herb"/>
+													<xs:enumeration value="Ground Leaves"/>
+													<xs:enumeration value="Ground Root"/>
+													<xs:enumeration value="Ground Nuts / Seeds"/>
+													<xs:enumeration value="Dried"/>
+													<xs:enumeration value="Dried for Potpouri"/>
+													<xs:enumeration value="Raw"/>
+													<xs:enumeration value="Cooked"/>
+													<xs:enumeration value="Fermented"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="description"/>
+										<xs:element name="result"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="resistances">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="resistance" minOccurs="0" maxOccurs="unbounded">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Powdery Mildew"/>
+										<xs:enumeration value="Black Spot"/>
+										<xs:enumeration value="Birds"/>
+										<xs:enumeration value="Deer"/>
+										<xs:enumeration value="Rabit"/>
+										<xs:enumeration value="Gophers / Moles / Voles"/>
+										<xs:enumeration value="Squirrels"/>
+										<xs:enumeration value="Pollution"/>
+										<xs:enumeration value="Fire Resistant"/>
+										<xs:enumeration value="Flood Resistant"/>
+										<xs:enumeration value="Tolerates Dry Shade"/>
+										<xs:enumeration value="Shade Tolerant"/>
+										<xs:enumeration value="Tolerates foot traffic"/>
+										<xs:enumeration value="Humidity Tolerant"/>
+										<xs:enumeration value="Drought Tolerant"/>
+										<xs:enumeration value="Salt Tolerant"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="limit">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="description"/>
+				<xs:element name="impact"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="use">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Conservation"/>
+							<xs:enumeration value="Commercial"/>
+							<xs:enumeration value="Wildlife"/>
+							<xs:enumeration value="Landscape"/>
+							<xs:enumeration value="Medicinal"/>
+							<xs:enumeration value="Decorative"/>
+							<xs:enumeration value="Windbreak or Hedge"/>
+							<xs:enumeration value="Dye production"/>
+							<xs:enumeration value="Winter Interest"/>
+							<xs:enumeration value="Erosion Control"/>
+							<xs:enumeration value="Guardian Plant"/>
+							<xs:enumeration value="Groundcover"/>
+							<xs:enumeration value="Shade Tree"/>
+							<xs:enumeration value="Water Garden"/>
+							<xs:enumeration value="Culinary Herb"/>
+							<xs:enumeration value="Culinary Vegetable"/>
+							<xs:enumeration value="Salad Greens"/>
+							<xs:enumeration value="Cooked Greens"/>
+							<xs:enumeration value="Cut Flower"/>
+							<xs:enumeration value="Dried Flower"/>
+							<xs:enumeration value="Naturalizing"/>
+							<xs:enumeration value="Cover Crop"/>
+							<xs:enumeration value="Suitable As Annual"/>
+							<xs:enumeration value="Timber"/>
+							<xs:enumeration value="Suitable for Forage"/>
+							<xs:enumeration value="Miniature Gardens"/>
+							<xs:enumeration value="Attract Bees"/>
+							<xs:enumeration value="Attract Birds"/>
+							<xs:enumeration value="Attract Butterflies"/>
+							<xs:enumeration value="Attract Hummingbirds"/>
+							<xs:enumeration value="Attract Other Beneficial Insects"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="description"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="toxic">
+		<xs:sequence>
+			<xs:element name="transfer" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="contact"/>
+						<xs:enumeration value="injest"/>
+						<xs:enumeration value="vapor/burning"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="compound"/>
+			<xs:element name="victim"/>
+			<xs:element name="consequence" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="specific">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="rose">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="class">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Alba"/>
+										<xs:enumeration value="Bourbon"/>
+										<xs:enumeration value="Centifolia"/>
+										<xs:enumeration value="China"/>
+										<xs:enumeration value="Floribunda"/>
+										<xs:enumeration value="Gallica"/>
+										<xs:enumeration value="Grandiflora"/>
+										<xs:enumeration value="Hybrid Multiflora"/>
+										<xs:enumeration value="Hybrid Musk"/>
+										<xs:enumeration value="Hybrid Perpetual"/>
+										<xs:enumeration value="Hybrid Tea"/>
+										<xs:enumeration value="Large-flowered climber"/>
+										<xs:enumeration value="Miniature"/>
+										<xs:enumeration value="Moss"/>
+										<xs:enumeration value="Noisette"/>
+										<xs:enumeration value="Polyantha"/>
+										<xs:enumeration value="Shrub"/>
+										<xs:enumeration value="Tea"/>
+										<xs:enumeration value="Other"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="classother"/>
+							<xs:element name="aarsRating"/>
+							<xs:element name="aarsId"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="timing">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="range" minOccurs="0" maxOccurs="unbounded">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Late Winter - Early Spring"/>
+							<xs:enumeration value="Spring"/>
+							<xs:enumeration value="Late Spring - Early Summber"/>
+							<xs:enumeration value="Summer"/>
+							<xs:enumeration value="Late Summer - Early Fall"/>
+							<xs:enumeration value="Fall"/>
+							<xs:enumeration value="Late Fall - Early Winter"/>
+							<xs:enumeration value="Winter"/>
+							<xs:enumeration value="Year Round"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
